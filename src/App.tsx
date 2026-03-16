@@ -1,3 +1,4 @@
+import { supabase } from './lib/supabase';
 import React, { useState } from 'react';
 import { Compass, School, Tool, AlertTriangle } from 'lucide-react';
 
