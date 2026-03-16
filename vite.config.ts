@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/react-refresh' // ou @vitejs/plugin-react
 
 export default defineConfig({
-  base: '/bussola2/', // Nome do seu repositório entre barras
   plugins: [react()],
+  base: '/bussola2/', 
 })
