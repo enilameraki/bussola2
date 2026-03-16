@@ -59,6 +59,36 @@ export default function BussolaIntervencao() {
 
               <button type="submit" className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 rounded-lg transition-colors">
                 Calcular Prioridade e Salvar
+
+                // 1. Importa a conexão com o banco que você criou na pasta lib
+import { supabase } from './lib/supabase';
+import React, { useState } from 'react';
+
+export default function App() {
+  // 2. Estados para guardar o que o usuário digita
+  const [nomeEscola, setNomeEscola] = useState('');
+  
+  // 3. A FUNÇÃO DO BOTÃO FICA AQUI (Antes do return)
+  const salvarDados = async (e: React.FormEvent) => {
+    e.preventDefault(); // Impede a página de recarregar
+    
+    const { data, error } = await supabase
+      .from('escolas_prioridades')
+      .insert([{ nome_escola: nomeEscola }]);
+
+    if (error) alert('Erro ao salvar!');
+    else alert('Dados salvos na Bússola!');
+  };
+
+  return (
+    // 4. Onde o botão "conecta" com a função
+    <form onSubmit={salvarDados}>
+       <input onChange={(e) => setNomeEscola(e.target.value)} />
+       <button type="submit">Calcular Prioridade e Salvar</button>
+    </form>
+  );
+}
+                
               </button>
             </form>
           </div>
